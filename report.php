@@ -1,20 +1,33 @@
 <?php
-if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
-  return false;    // сервер возвращает файлы напрямую.
-} else {
-  echo "<p>Welcome to PHP</p>";
-}
+
+$first_name = $_POST['firstname'];
+$last_name = $_POST['lastname'];
+$when_it_happened = $_POST['whenithappend'];
+$how_long = $_POST['howlong'];
+$how_many = $_POST['howmany'];
+$alien_description = $_POST['aliendescription'];
+$what_they_did = $_POST['whattheydid'];
+$fang_spotted = $_POST['fangspotted'];
+$email = $_POST['email'];
+$other = $_POST['other'];
 $dbc = mysqli_connect ('127.0.0.1', 'root', '', 'aliendatabase') or die ('Error with mysql connection');
 
 $query = "insert into aliens_abduction (first_name, last_name, when_it_happend,
  how_long, how_many, alien_description,
   what_they_did, fang_spotted,other,email) values
-   ('Sally', 'Johns', '3 day ago', '1 day', 'four', 'green with tentakles',
-   'just tok play with dog','yes','maby i saw your dog','sally@gregs-list.net')";
+   ('$first_name', '$last_name', '$when_it_happened', '$how_long', '$how_many', '$alien_description',
+   '$what_they_did','$fang_spotted','$other','$email')";
 $result = mysqli_query($dbc,$query) or die ('Error with mysql executing');
 mysqli_close($dbc);
-
-
-$when_it_happend = $_POST['whenithappend'];
-$how_long = $_POST['howlong'];
-$how_many = $_POST['howmany'];
+if ($_POST) {
+  echo "Sank you</br>";
+  echo "$first_name $last_name</br>";
+  echo "$when_it_happened</br>";
+  echo "$how_long</br>";
+  echo "$how_many</br>";
+  echo "$alien_description</br>";
+  echo "$what_they_did</br>";
+  echo "$fang_spotted</br>";
+  echo "$email</br>";
+  echo "$other </br>";
+}
