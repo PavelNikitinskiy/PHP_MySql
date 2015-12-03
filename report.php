@@ -31,3 +31,4 @@ if ($_POST) {
   echo "$email</br>";
   echo "$other </br>";
 }
+
